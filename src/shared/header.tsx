@@ -1,0 +1,25 @@
+import { Box, Container } from '@mui/material'
+import { FC } from 'react'
+import logo from '@/assets/logo.svg'
+import { Link } from 'react-router-dom'
+import { SearchBlock } from './search-block'
+
+export const Header: FC = () => (
+	<Box component={'header'} paddingBlock={'12px'} bgcolor={'#222034'}>
+		<Container
+			maxWidth='lg'
+			sx={{
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'space-between',
+			}}
+		>
+			<Link to={'/'}>
+				<Box maxWidth={56}>
+					<img src={logo} alt='Логотип' />
+				</Box>
+			</Link>
+			<SearchBlock />
+		</Container>
+	</Box>
+)
