@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios'
 import { TFilmsResponse, TPossibleValuesField } from './types'
+import { TFilmFull } from '@/types'
 
 const axiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -19,6 +20,7 @@ const axiosAltInstance = axios.create({
 const initialFilmsOptions = {
 	limit: ['28'],
 	selectFields: [
+		'id',
 		'name',
 		'type',
 		'poster',
@@ -49,6 +51,11 @@ export const fetchFilms = async (
 	const { data } = await axiosInstance.get<TFilmsResponse>(
 		`movie?page=${pageCount}${endpoint(initialFilmsOptions)}`
 	)
+	return data
+}
+
+export const fetchFilm = async (id: string): Promise<TFilmFull> => {
+	const { data } = await axiosInstance.get<TFilmFull>(`movie/${id}`)
 	return data
 }
 

@@ -38,6 +38,14 @@ const router = createBrowserRouter([
 							return { Component: MainPage }
 						},
 					},
+					{
+						path: ':type/:id',
+						lazy: async () => {
+							const { FilmPage } = await import('@/pages')
+							return { Component: FilmPage }
+						},
+					},
+
 					// {
 					// 	path: ':type/:id',
 					// 	Component: FilmPage,
