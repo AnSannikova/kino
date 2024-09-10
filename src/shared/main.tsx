@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { Outlet } from 'react-router-dom'
 
 export const Main: FC = () => (
-	<Container maxWidth='lg' component={'main'}>
+	<Container maxWidth='xl' component={'main'}>
 		<Outlet />
 	</Container>
 )

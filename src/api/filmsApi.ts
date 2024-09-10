@@ -1,22 +1,22 @@
-import { TFilm } from '@/types'
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios'
+import { TFilmsResponse, TPossibleValuesField } from './types'
 
 const axiosInstance = axios.create({
-	baseURL: import.meta.env.VITE_API_URL,
+	baseURL: import.meta.env.VITE_API_BASE_URL,
 	headers: {
 		'X-API-KEY': import.meta.env.VITE_API_KEY,
 	},
 })
 
-type TFilmsResponse = {
-	docs: TFilm[]
-	total: number
-	limit: number
-	page: number
-	pages: number
-}
+const axiosAltInstance = axios.create({
+	baseURL: import.meta.env.VITE_API_ALT_URL,
+	headers: {
+		'X-API-KEY': import.meta.env.VITE_API_KEY,
+	},
+})
 
-const filmsOptions = {
+const initialFilmsOptions = {
 	limit: ['28'],
 	selectFields: [
 		'name',
@@ -32,7 +32,7 @@ const filmsOptions = {
 	sortType: ['-1'],
 }
 
-type TFilmsOptions = Partial<typeof filmsOptions>
+type TFilmsOptions = Partial<typeof initialFilmsOptions>
 
 const endpoint = (fields: TFilmsOptions) => {
 	return Object.entries(fields)
@@ -47,7 +47,19 @@ export const fetchFilms = async (
 	pageCount: number
 ): Promise<TFilmsResponse> => {
 	const { data } = await axiosInstance.get<TFilmsResponse>(
-		`movie?page=${pageCount}${endpoint(filmsOptions)}`
+		`movie?page=${pageCount}${endpoint(initialFilmsOptions)}`
 	)
 	return data
 }
+
+const fetchPossibleValuesField = async (
+	filed: string
+): Promise<TPossibleValuesField[]> => {
+	const { data } = await axiosAltInstance.get<TPossibleValuesField[]>(
+		`?field=${filed}`
+	)
+	return data
+}
+
+// export const fetchPossibleGenres = fetchPossibleValuesField('genres.name')
+// export const fetchPossibleCountries = fetchPossibleValuesField('countries.name')
