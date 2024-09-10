@@ -1,3 +1,4 @@
+export { CardSkeleton } from './skeletons'
 export { FilmsSection } from './films-section'
 export { FilmCard } from './film-card'
 export { Main } from './main'
