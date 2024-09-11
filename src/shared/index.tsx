@@ -1,5 +1,7 @@
+export { Rating } from './rating'
+export { Hero } from './hero'
 export { CardSkeleton } from './skeletons'
-export { FilmsSection } from './films-section'
+export { FilmsBlock } from './films-block'
 export { FilmCard } from './film-card'
 export { Main } from './main'
 export { Header } from './header'

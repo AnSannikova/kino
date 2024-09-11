@@ -6,7 +6,8 @@ import {
 	getFilmsThunk,
 } from '@/services/slices/filmsSlice'
 import { useAppDispatch, useAppSelector } from '@/services/store'
-import { FilmsSection } from '@/shared'
+import { FilmsBlock } from '@/shared'
+import { Container } from '@mui/material'
 import { FC } from 'react'
 
 export const MainPage: FC = () => {
@@ -21,12 +22,14 @@ export const MainPage: FC = () => {
 	}
 
 	return (
-		<FilmsSection
-			items={films}
-			isLoading={isLoading}
-			pagesCount={allPages}
-			currentPage={page}
-			handleChange={handleChange}
-		/>
+		<Container maxWidth='xl' component={'section'}>
+			<FilmsBlock
+				items={films}
+				isLoading={isLoading}
+				pagesCount={allPages}
+				currentPage={page}
+				handleChange={handleChange}
+			/>
+		</Container>
 	)
 }

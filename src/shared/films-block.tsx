@@ -5,7 +5,7 @@ import { FC } from 'react'
 import { FilmCard } from './film-card'
 import { CardSkeleton } from './skeletons'
 
-interface IFilmsSection {
+interface IFilmsBlock {
 	items: TFilm[]
 	isLoading: boolean
 	pagesCount: number
@@ -13,7 +13,7 @@ interface IFilmsSection {
 	handleChange: (event: React.ChangeEvent<unknown>, value: number) => void
 }
 
-export const FilmsSection: FC<IFilmsSection> = ({
+export const FilmsBlock: FC<IFilmsBlock> = ({
 	items,
 	isLoading,
 	pagesCount,
@@ -23,7 +23,7 @@ export const FilmsSection: FC<IFilmsSection> = ({
 	const cardItems = getCardsData(items)
 
 	return (
-		<Box component={'section'} padding={'16px 0'}>
+		<Box padding={'16px 0'}>
 			<List
 				sx={{
 					width: '100%',

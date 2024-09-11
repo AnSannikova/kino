@@ -16,7 +16,13 @@ export const Header: FC = () => (
 		>
 			<Link to={'/'}>
 				<Box maxWidth={56}>
-					<img src={logo} alt='Логотип' />
+					<Box
+						component={'img'}
+						src={logo}
+						alt='Логотип'
+						display={'block'}
+						width={'100%'}
+					/>
 				</Box>
 			</Link>
 			<SearchBlock />
