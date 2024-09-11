@@ -1,3 +1,4 @@
+export { AboutFilm } from './about-film'
 export { Rating } from './rating'
 export { Hero } from './hero'
 export { CardSkeleton } from './skeletons'
