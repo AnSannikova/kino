@@ -43,7 +43,7 @@ export const AboutFilm: FC<IAboutFilm> = ({
 			display: 'flex',
 			flexDirection: 'column',
 			gap: 2,
-			padding: 5,
+			padding: '40px 0',
 			fontSize: '1.2rem',
 			lineHeight: 1.2,
 		}}

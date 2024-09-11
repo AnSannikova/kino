@@ -1,7 +1,8 @@
 import { fetchFilm } from '@/api/filmsApi'
-import { Hero } from '@/shared'
+import { Description, Hero } from '@/shared'
 import { TFilmFull } from '@/types'
 import { filterPersonsData, findActors } from '@/utils/utils'
+import { Container } from '@mui/material'
 import { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -39,5 +40,24 @@ export const FilmPage: FC = () => {
 		}
 	}, [id])
 
-	return <>{film && <Hero {...getHeroData(film)} />}</>
+	return (
+		film && (
+			<>
+				<Hero {...getHeroData(film)} />
+				<Container
+					maxWidth={'xl'}
+					component={'section'}
+					sx={{
+						paddingTop: 5,
+						paddingBottom: 7,
+						display: 'flex',
+						flexDirection: 'column',
+						gap: 1.5,
+					}}
+				>
+					<Description text={film.description} />
+				</Container>
+			</>
+		)
+	)
 }
