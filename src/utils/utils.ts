@@ -42,5 +42,5 @@ export const getCardsData = (films: TFilm[]) => {
 
 export const getFactData = (fact: string) => {
 	const reg = /<(a|\/).+?>/gm
-	return fact.replace(reg, '').replace(/&.*?;/gm, '"')
+	return fact.replace(reg, '').replace(/&.*?;/gm, '')
 }

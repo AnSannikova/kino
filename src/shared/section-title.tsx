@@ -8,7 +8,7 @@ export const SectionTitle: FC<PropsWithChildren> = ({ children }) => (
 			fontSize: 'clamp(1.25rem, 0.7474rem + 1.0471vw, 1.75rem)',
 			fontWeight: 600,
 		}}
-		marginBottom={3}
+		marginBottom={2}
 	>
 		{children}
 	</Typography>
