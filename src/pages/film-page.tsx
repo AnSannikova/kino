@@ -1,5 +1,5 @@
 import { fetchFilm } from '@/api/filmsApi'
-import { Description, Hero } from '@/shared'
+import { Description, Hero, PersonSection } from '@/shared'
 import { TFilmFull } from '@/types'
 import { filterPersonsData, findActors } from '@/utils/utils'
 import { Container } from '@mui/material'
@@ -52,10 +52,11 @@ export const FilmPage: FC = () => {
 						paddingBottom: 7,
 						display: 'flex',
 						flexDirection: 'column',
-						gap: 1.5,
+						gap: 6,
 					}}
 				>
 					<Description text={film.description} />
+					{film.persons && <PersonSection items={film.persons} />}
 				</Container>
 			</>
 		)

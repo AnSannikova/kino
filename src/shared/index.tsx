@@ -1,3 +1,7 @@
+export { PersonSection } from './person-section'
+export { SectionTitle } from './section-title'
+export { Carousel } from './carousel/carousel'
+export { PersonCard } from './person-card'
 export { Description } from './description'
 export { AboutFilm } from './about-film'
 export { Rating } from './rating'
