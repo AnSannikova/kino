@@ -1,3 +1,4 @@
+export { FilmsCarousel } from './films-carousel'
 export { Facts } from './facts'
 export { PersonSection } from './person-section'
 export { SectionTitle } from './section-title'

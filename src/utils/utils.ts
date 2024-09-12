@@ -1,4 +1,4 @@
-import { TFilm, TPerson, TTrailers } from '../types'
+import { TFilm, TPartFilm, TPerson, TTrailers } from '../types'
 import cover from '@/assets/card-cover.svg'
 
 export const timeConverter = (number: number) => {
@@ -23,7 +23,7 @@ export const getYouTubeVideos = (videos: TTrailers[]) => {
 		.map((video) => video.url)
 }
 
-export const getCardsData = (films: TFilm[]) => {
+export const getCardsData = (films: TFilm[] | TPartFilm[]) => {
 	return films.map((item) => {
 		return {
 			id: item.id,
@@ -31,8 +31,7 @@ export const getCardsData = (films: TFilm[]) => {
 			imgSrc: item.poster?.previewUrl ?? cover,
 			title: item.name,
 			rating: {
-				imdb: String(item.rating.imdb ?? 0),
-				kp: String(item.rating.kp.toFixed(1) ?? 0),
+				kp: String(item.rating?.kp.toFixed(1) ?? 0),
 			},
 			year: String(item.year),
 			genre: item.genres ? item.genres[0].name : '',

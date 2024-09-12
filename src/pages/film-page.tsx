@@ -1,5 +1,11 @@
 import { fetchFilm } from '@/api/filmsApi'
-import { Description, Facts, Hero, PersonSection } from '@/shared'
+import {
+	Description,
+	Facts,
+	FilmsCarousel,
+	Hero,
+	PersonSection,
+} from '@/shared'
 import { TFilmFull } from '@/types'
 import { filterPersonsData, findActors } from '@/utils/utils'
 import { Container } from '@mui/material'
@@ -57,6 +63,18 @@ export const FilmPage: FC = () => {
 				>
 					<Description text={film.description} />
 					{film.persons && <PersonSection items={film.persons} />}
+
+					{film.sequelsAndPrequels && film.sequelsAndPrequels.length > 0 && (
+						<FilmsCarousel
+							items={film.sequelsAndPrequels}
+							title='Сиквелы и приквелы'
+						/>
+					)}
+
+					{film.similarMovies && film.similarMovies.length > 0 && (
+						<FilmsCarousel items={film.similarMovies} title='Похожие фильмы' />
+					)}
+
 					{film.facts && <Facts facts={film.facts} />}
 				</Container>
 			</>

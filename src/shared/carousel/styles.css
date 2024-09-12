@@ -6,6 +6,14 @@
 	--slide-size: 10%;
 }
 
+.film .embla {
+	--slide-size: 14.3%;
+}
+
+.person .embla {
+	--slide-size: 10%;
+}
+
 .embla__viewport {
 	overflow: hidden;
 }

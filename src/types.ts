@@ -29,6 +29,7 @@ export type TPartFilm = {
 		kp: number
 		imdb: number
 	}
+	genres?: TName[] | null
 }
 
 export type TWatchingMoviesService = {
