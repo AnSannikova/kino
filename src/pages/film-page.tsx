@@ -4,7 +4,7 @@ import {
 	Facts,
 	FilmsCarousel,
 	Hero,
-	PersonSection,
+	PersonCarousel,
 } from '@/shared'
 import { TFilmFull } from '@/types'
 import { filterPersonsData, findActors } from '@/utils/utils'
@@ -62,7 +62,7 @@ export const FilmPage: FC = () => {
 					}}
 				>
 					<Description text={film.description} />
-					{film.persons && <PersonSection items={film.persons} />}
+					{film.persons && <PersonCarousel items={film.persons} />}
 
 					{film.sequelsAndPrequels && film.sequelsAndPrequels.length > 0 && (
 						<FilmsCarousel

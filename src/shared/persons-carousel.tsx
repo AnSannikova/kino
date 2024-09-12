@@ -5,11 +5,11 @@ import { PersonCard } from './person-card'
 import { SectionTitle } from './section-title'
 import { Box } from '@mui/material'
 
-interface IPersonSection {
+interface IPersonCarousel {
 	items: TPerson[]
 }
 
-export const PersonSection: FC<IPersonSection> = ({ items }) => (
+export const PersonCarousel: FC<IPersonCarousel> = ({ items }) => (
 	<Box component={'section'}>
 		<SectionTitle>Актёры и съёмочная группа</SectionTitle>
 		<Carousel
