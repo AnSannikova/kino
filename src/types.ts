@@ -46,6 +46,11 @@ export type TTrailers = {
 	type: string
 }
 
+export type TFact = {
+	value: string
+	spoiler: boolean
+}
+
 export type TFilm = {
 	id: number
 	name: string
@@ -90,4 +95,5 @@ export type TFilmFull = TFilm & {
 	videos?: {
 		trailers: TTrailers[]
 	}
+	facts?: TFact[]
 }

@@ -1,3 +1,4 @@
+export { Facts } from './facts'
 export { PersonSection } from './person-section'
 export { SectionTitle } from './section-title'
 export { Carousel } from './carousel/carousel'
