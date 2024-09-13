@@ -7,7 +7,7 @@ import { SearchBlock } from './search-block'
 export const Header: FC = () => (
 	<Box component={'header'} paddingBlock={'12px'} bgcolor={'#222034'}>
 		<Container
-			maxWidth='xl'
+			maxWidth='lg'
 			sx={{
 				display: 'flex',
 				alignItems: 'center',

@@ -51,7 +51,7 @@ export const FilmPage: FC = () => {
 			<>
 				<Hero {...getHeroData(film)} />
 				<Container
-					maxWidth={'xl'}
+					maxWidth={'lg'}
 					component={'section'}
 					sx={{
 						paddingTop: 5,
@@ -75,7 +75,7 @@ export const FilmPage: FC = () => {
 						<FilmsCarousel items={film.similarMovies} title='Похожие фильмы' />
 					)}
 
-					{film.facts && <Facts facts={film.facts} />}
+					{film.facts && film.facts.length > 0 && <Facts facts={film.facts} />}
 				</Container>
 			</>
 		)

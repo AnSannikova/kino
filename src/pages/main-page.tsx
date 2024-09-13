@@ -22,7 +22,7 @@ export const MainPage: FC = () => {
 	}
 
 	return (
-		<Container maxWidth='xl' component={'section'}>
+		<Container maxWidth='lg' component={'section'}>
 			<FilmsBlock
 				items={films}
 				isLoading={isLoading}

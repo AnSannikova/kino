@@ -28,7 +28,7 @@ export const FilmCard: FC<IFilmCard> = ({
 	return (
 		<Link to={`/${type}/${id}`}>
 			<Box component={'article'}>
-				<Card>
+				<Card sx={{ position: 'relative' }}>
 					<CardActionArea>
 						<Box sx={{ aspectRatio: 1 / 1.45 }}>
 							<CardMedia
@@ -40,34 +40,42 @@ export const FilmCard: FC<IFilmCard> = ({
 							/>
 						</Box>
 					</CardActionArea>
+					<Box sx={{ position: 'absolute', top: 5, left: 5 }}>
+						{rating?.kp && (
+							<Typography
+								variant='body2'
+								sx={{
+									fontSize: '1rem',
+									lineHeight: 1,
+									bgcolor: '#5d5d5d',
+									padding: '2px 6px 1px',
+									borderRadius: '4px',
+								}}
+							>
+								{rating.kp}
+							</Typography>
+						)}
+					</Box>
 				</Card>
 				<Typography
 					variant='subtitle1'
 					noWrap={true}
 					sx={{
 						fontWeight: 700,
+						fontSize: '1rem',
 						lineHeight: 1.2,
 						marginTop: '10px',
 						marginBottom: '6px',
-						fontSize: '18px',
 					}}
 				>
 					{title}
 				</Typography>
-				<Box display={'flex'} gap={'8px'} alignItems={'center'}>
-					{rating?.kp && (
-						<Typography
-							variant='body2'
-							sx={{
-								lineHeight: 1,
-								bgcolor: '#5d5d5d',
-								padding: '1px 4px',
-								borderRadius: '4px',
-							}}
-						>
-							{rating.kp}
-						</Typography>
-					)}
+				<Box
+					display={'flex'}
+					gap={'8px'}
+					alignItems={'center'}
+					fontSize={'1rem'}
+				>
 					{year && genre && (
 						<Typography variant='body2' sx={{ lineHeight: 1.2 }}>
 							{meta.join(', ')}

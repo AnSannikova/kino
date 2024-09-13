@@ -18,7 +18,7 @@ const axiosAltInstance = axios.create({
 })
 
 const initialFilmsOptions = {
-	limit: ['28'],
+	limit: ['24'],
 	selectFields: [
 		'id',
 		'name',

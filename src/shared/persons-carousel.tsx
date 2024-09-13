@@ -13,6 +13,7 @@ export const PersonCarousel: FC<IPersonCarousel> = ({ items }) => (
 	<Box component={'section'}>
 		<SectionTitle>Актёры и съёмочная группа</SectionTitle>
 		<Carousel
+			variant='person'
 			slides={items.map((person) => (
 				<PersonCard
 					id={person.id}

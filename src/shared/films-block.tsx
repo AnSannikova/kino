@@ -30,16 +30,16 @@ export const FilmsBlock: FC<IFilmsBlock> = ({
 					display: 'flex',
 					flexWrap: 'wrap',
 					alignContent: 'flex-start',
-					padding: '0 0 16px',
+					padding: '0 0 20px',
 				}}
 			>
 				{cardItems.map((item) => (
 					<ListItem
 						key={item.id}
 						sx={{
-							width: 'calc(100% / 7)',
+							width: 'calc(100% / 6)',
 							display: 'block',
-							padding: '8px 20px 20px',
+							padding: '8px 16px 22px',
 						}}
 					>
 						{isLoading ? <CardSkeleton /> : <FilmCard {...item} />}

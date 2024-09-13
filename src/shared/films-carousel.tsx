@@ -15,6 +15,7 @@ export const FilmsCarousel: FC<IFilmsCarousel> = ({ title, items }) => {
 		<Box component={'section'}>
 			<SectionTitle>{title}</SectionTitle>
 			<Carousel
+				variant='film'
 				slides={items.map((item) => (
 					<FilmCard
 						id={item.id}
