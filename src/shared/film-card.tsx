@@ -55,20 +55,24 @@ export const FilmCard: FC<IFilmCard> = ({
 					{title}
 				</Typography>
 				<Box display={'flex'} gap={'8px'} alignItems={'center'}>
-					<Typography
-						variant='body2'
-						sx={{
-							lineHeight: 1,
-							bgcolor: '#5d5d5d',
-							padding: '1px 4px',
-							borderRadius: '4px',
-						}}
-					>
-						{rating?.kp}
-					</Typography>
-					<Typography variant='body2' sx={{ lineHeight: 1.2 }}>
-						{meta.join(', ')}
-					</Typography>
+					{rating?.kp && (
+						<Typography
+							variant='body2'
+							sx={{
+								lineHeight: 1,
+								bgcolor: '#5d5d5d',
+								padding: '1px 4px',
+								borderRadius: '4px',
+							}}
+						>
+							{rating.kp}
+						</Typography>
+					)}
+					{year && genre && (
+						<Typography variant='body2' sx={{ lineHeight: 1.2 }}>
+							{meta.join(', ')}
+						</Typography>
+					)}
 				</Box>
 			</Box>
 		</Link>

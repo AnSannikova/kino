@@ -4,7 +4,6 @@ import { SectionTitle } from './section-title'
 import { Box } from '@mui/material'
 import { Carousel } from './carousel/carousel'
 import { FilmCard } from './film-card'
-import { getCardsData } from '@/utils/utils'
 
 interface IFilmsCarousel {
 	title: string
@@ -12,14 +11,17 @@ interface IFilmsCarousel {
 }
 
 export const FilmsCarousel: FC<IFilmsCarousel> = ({ title, items }) => {
-	const cardItems = getCardsData(items)
-
 	return (
 		<Box component={'section'}>
 			<SectionTitle>{title}</SectionTitle>
 			<Carousel
-				slides={cardItems.map((item) => (
-					<FilmCard {...item} />
+				slides={items.map((item) => (
+					<FilmCard
+						id={item.id}
+						type={item.type}
+						imgSrc={item.poster.previewUrl}
+						title={item.name}
+					/>
 				))}
 			/>
 		</Box>
