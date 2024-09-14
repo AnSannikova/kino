@@ -1,6 +1,7 @@
 import { Box, Card, CardActionArea, CardMedia, Typography } from '@mui/material'
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
+import { CardRating } from './card-rating'
 
 interface IFilmCard {
 	id: number
@@ -41,20 +42,7 @@ export const FilmCard: FC<IFilmCard> = ({
 						</Box>
 					</CardActionArea>
 					<Box sx={{ position: 'absolute', top: 5, left: 5 }}>
-						{rating?.kp && (
-							<Typography
-								variant='body2'
-								sx={{
-									fontSize: '1rem',
-									lineHeight: 1,
-									bgcolor: '#5d5d5d',
-									padding: '2px 6px 1px',
-									borderRadius: '4px',
-								}}
-							>
-								{rating.kp}
-							</Typography>
-						)}
+						{rating?.kp && <CardRating>{rating.kp}</CardRating>}
 					</Box>
 				</Card>
 				<Typography

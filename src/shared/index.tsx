@@ -1,3 +1,5 @@
+export { SearchItem } from './search-item'
+export { CardRating } from './card-rating'
 export { FilmsCarousel } from './films-carousel'
 export { Facts } from './facts'
 export { PersonCarousel } from './persons-carousel'

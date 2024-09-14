@@ -59,6 +59,17 @@ export const fetchFilm = async (id: string): Promise<TFilmFull> => {
 	return data
 }
 
+export const searchFilms = async (
+	name: string,
+	limit: number,
+	pageCount: number = 1
+): Promise<TFilmsResponse> => {
+	const { data } = await axiosInstance.get<TFilmsResponse>(
+		`movie/search?page=${pageCount}&limit=${limit}&query=${name}`
+	)
+	return data
+}
+
 const fetchPossibleValuesField = async (
 	filed: string
 ): Promise<TPossibleValuesField[]> => {
