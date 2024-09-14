@@ -14,7 +14,7 @@ export const Header: FC = () => (
 				justifyContent: 'space-between',
 			}}
 		>
-			<Link to={'/'}>
+			<Link to={'/?page=1'}>
 				<Box maxWidth={56}>
 					<Box
 						component={'img'}

@@ -1,25 +1,42 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
 	filmsAllPagesSelector,
 	filmsIsLoadingSelector,
-	filmsPageCountSelector,
 	getFilmsSelector,
 	getFilmsThunk,
 } from '@/services/slices/filmsSlice'
 import { useAppDispatch, useAppSelector } from '@/services/store'
 import { FilmsBlock } from '@/shared'
 import { Container } from '@mui/material'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 export const MainPage: FC = () => {
 	const films = useAppSelector(getFilmsSelector)
 	const allPages = useAppSelector(filmsAllPagesSelector)
-	const page = useAppSelector(filmsPageCountSelector)
 	const isLoading = useAppSelector(filmsIsLoadingSelector)
 	const dispatch = useAppDispatch()
+	const [searchParams, setSearchParams] = useSearchParams()
+	const page = Number(searchParams.get('page') || 1)
+	const location = useLocation()
 
 	const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
-		dispatch(getFilmsThunk(value))
+		setSearchParams((params) => {
+			params.set('page', String(value))
+			return params
+		})
 	}
+
+	useEffect(() => {
+		setSearchParams((params) => {
+			params.set('page', String(page))
+			return params
+		})
+	}, [])
+
+	useEffect(() => {
+		dispatch(getFilmsThunk(page))
+	}, [location])
 
 	return (
 		<Container maxWidth='lg' component={'section'}>
