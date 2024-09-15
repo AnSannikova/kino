@@ -4,6 +4,9 @@ import {
 	createBrowserRouter,
 } from 'react-router-dom'
 import { RootLayout } from '@/layouts'
+import { Paths } from './utils/paths'
+
+const mainPath = Paths.main
 
 const router = createBrowserRouter([
 	{
@@ -19,7 +22,7 @@ const router = createBrowserRouter([
 		),
 		children: [
 			{
-				path: '/',
+				path: mainPath,
 				children: [
 					{
 						index: true,
@@ -35,13 +38,13 @@ const router = createBrowserRouter([
 							return { Component: FilmPage }
 						},
 					},
-					// {
-					// 	path: 'search',
-					// 	lazy: async () => {
-					// 		const { SearchPage } = await import('pages');
-					// 		return { Component: SearchPage };
-					// 	},
-					// },
+					{
+						path: 'search',
+						lazy: async () => {
+							const { SearchPage } = await import('@/pages')
+							return { Component: SearchPage }
+						},
+					},
 				],
 			},
 		],

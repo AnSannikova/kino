@@ -2,6 +2,7 @@ import { Box, Card, CardActionArea, CardMedia, Typography } from '@mui/material'
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { CardRating } from './card-rating'
+import { Paths } from '@/utils/paths'
 
 interface IFilmCard {
 	id: number
@@ -25,9 +26,11 @@ export const FilmCard: FC<IFilmCard> = ({
 	genre,
 	type,
 }) => {
+	const mainPath = Paths.main
 	const meta = [year, genre]
+
 	return (
-		<Link to={`/${type}/${id}`}>
+		<Link to={`${mainPath}${type}/${id}`}>
 			<Box component={'article'}>
 				<Card sx={{ position: 'relative' }}>
 					<CardActionArea>

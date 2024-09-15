@@ -3,6 +3,9 @@ import { FC } from 'react'
 import logo from '@/assets/logo.svg'
 import { Link } from 'react-router-dom'
 import { SearchBlock } from './search-block'
+import { Paths } from '@/utils/paths'
+
+const mainPath = Paths.main
 
 export const Header: FC = () => (
 	<Box component={'header'} paddingBlock={'12px'} bgcolor={'#222034'}>
@@ -14,7 +17,7 @@ export const Header: FC = () => (
 				justifyContent: 'space-between',
 			}}
 		>
-			<Link to={'/?page=1'}>
+			<Link to={`${mainPath}?page=1`}>
 				<Box maxWidth={56}>
 					<Box
 						component={'img'}

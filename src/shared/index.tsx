@@ -1,3 +1,4 @@
+export { SearchBlock } from './search-block'
 export { SearchItem } from './search-item'
 export { CardRating } from './card-rating'
 export { FilmsCarousel } from './films-carousel'

@@ -1,18 +1,32 @@
-import { Box, InputAdornment, List, OutlinedInput } from '@mui/material'
+import {
+	Box,
+	Button,
+	CircularProgress,
+	InputAdornment,
+	List,
+	OutlinedInput,
+} from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import { SearchItem } from './search-item'
 import { ChangeEvent, FC, useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { searchFilms } from '@/api/filmsApi'
 import { TFilm } from '@/types'
-import { SearchItem } from './search-item'
 import { useClickAway } from 'react-use'
 import _ from 'lodash'
 import { v4 as uuidv4 } from 'uuid'
+import { useAppDispatch } from '@/services/store'
+import { setSearchWord } from '@/services/slices/searchSlice'
+import { Paths } from '@/utils/paths'
 
 export const SearchBlock: FC = () => {
 	const [value, setValue] = useState('')
 	const [films, setFilms] = useState<TFilm[] | null>(null)
 	const [focused, setFocused] = useState(false)
 	const ref = useRef(null)
+	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
+	const paths = Paths
 
 	const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value)
@@ -35,11 +49,21 @@ export const SearchBlock: FC = () => {
 		}
 	}, 450)
 
+	const onClickItem = () => {
+		setFocused(false)
+		setFilms(null)
+		dispatch(setSearchWord(value))
+	}
+
+	const onButtonClick = () => {
+		navigate(paths.search)
+		setValue('')
+	}
+
 	return (
-		<Box maxWidth={'450px'} width={'100%'} position={'relative'}>
+		<Box ref={ref} maxWidth={'450px'} width={'100%'} position={'relative'}>
 			<OutlinedInput
 				onFocus={() => setFocused(true)}
-				ref={ref}
 				value={value}
 				onChange={onChangeInput}
 				placeholder='Поиск'
@@ -61,28 +85,52 @@ export const SearchBlock: FC = () => {
 					top={50}
 					left={0}
 					right={0}
-					zIndex={2}
+					zIndex={10}
 					bgcolor={'#222034'}
 					borderRadius={'10px'}
 					border={'1px solid #d5d1ea'}
 				>
-					<List>
-						{films?.map((item) => (
-							<SearchItem
-								key={uuidv4()}
-								id={item.id}
-								type={item.type}
-								imgSrc={item.poster?.previewUrl}
-								name={item?.name || ''}
-								year={item.year || undefined}
-								genre={
-									item.genres && item.genres.length > 0
-										? item.genres[0].name
-										: ''
-								}
-							/>
-						))}
-					</List>
+					{!films && (
+						<Box
+							display={'flex'}
+							justifyContent={'center'}
+							alignContent={'center'}
+							padding={10}
+						>
+							<CircularProgress />
+						</Box>
+					)}
+					{films && (
+						<List>
+							{films.map((item) => (
+								<Link
+									onClick={onClickItem}
+									key={uuidv4()}
+									to={`${paths.main}${item.type}/${item.id}`}
+								>
+									<SearchItem
+										imgSrc={item.poster?.previewUrl}
+										name={item?.name || ''}
+										year={item.year || undefined}
+										genre={
+											item.genres && item.genres.length > 0
+												? item.genres[0].name
+												: ''
+										}
+									/>
+								</Link>
+							))}
+							<Box display={'flex'} justifyContent={'center'}>
+								<Button
+									onClick={onButtonClick}
+									variant='text'
+									sx={{ lineHeight: 1.2 }}
+								>
+									Показать еще
+								</Button>
+							</Box>
+						</List>
+					)}
 				</Box>
 			)}
 		</Box>
