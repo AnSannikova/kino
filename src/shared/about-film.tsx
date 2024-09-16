@@ -15,7 +15,7 @@ interface IAboutFilm {
 	countries: string[]
 	director: string[]
 	actors: string[]
-	rating: string
+	rating?: string
 	length?: number
 	ageRating?: string
 }
@@ -59,12 +59,12 @@ export const AboutFilm: FC<IAboutFilm> = ({
 		</Typography>
 
 		<Box display={'flex'} alignItems={'center'} gap={1.5}>
-			<Rating>{rating}</Rating>
+			{rating !== '0.0' && <Rating>{rating}</Rating>}
 			{year > 0 && <span>{year} г.</span>}
-			{length && (
+			{length !== 0 && length && (
 				<span>{length < 60 ? `${length} мин.` : timeConverter(length)}</span>
 			)}
-			{ageRating && <span>{ageRating}+</span>}
+			{ageRating && ageRating !== '0' && <span>{ageRating}+</span>}
 		</Box>
 
 		<Box display={'flex'} alignItems={'center'} gap={1.5}>

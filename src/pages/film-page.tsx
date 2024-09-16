@@ -26,7 +26,7 @@ const getHeroData = (film: TFilmFull) => {
 		actors: findActors(film.persons),
 		rating: String(film.rating.kp.toFixed(1)),
 		length: film.movieLength ?? film.seriesLength ?? 0,
-		ageRating: String(film.ageRating),
+		ageRating: String(film.ageRating ?? 0),
 	}
 }
 

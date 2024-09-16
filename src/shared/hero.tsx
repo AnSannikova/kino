@@ -15,7 +15,7 @@ interface IHero {
 	countries: string[]
 	director: string[]
 	actors: string[]
-	rating: string
+	rating?: string
 	length?: number
 	ageRating?: string
 }
