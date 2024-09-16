@@ -7,8 +7,8 @@ import {
 	OutlinedInput,
 } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import { SearchFilmItem } from './search-film-item'
-import { ChangeEvent, FC, useRef, useState } from 'react'
+import { SearchFilmItem } from './search-items/search-film-item'
+import { ChangeEvent, FC, FormEvent, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { searchFilms } from '@/api/filmsApi'
 import { TFilm } from '@/types'
@@ -55,32 +55,39 @@ export const SearchBlock: FC = () => {
 		setValue('')
 	}
 
-	const onButtonClick = () => {
+	const goToSearch = () => {
 		navigate(paths.search)
 		dispatch(setSearchWord(value))
 		setValue('')
 		dispatch(resetSearchState())
 	}
 
+	const onSubmit = (e: FormEvent) => {
+		e.preventDefault()
+		goToSearch()
+	}
+
 	return (
 		<Box ref={ref} maxWidth={'450px'} width={'100%'} position={'relative'}>
-			<OutlinedInput
-				onFocus={() => setFocused(true)}
-				value={value}
-				onChange={onChangeInput}
-				placeholder='Поиск'
-				startAdornment={
-					<InputAdornment position='start'>
-						<SearchIcon />
-					</InputAdornment>
-				}
-				fullWidth
-				sx={{
-					'& .MuiInputBase-input': {
-						padding: '10px 14px 10px 0',
-					},
-				}}
-			/>
+			<form onSubmit={onSubmit}>
+				<OutlinedInput
+					onFocus={() => setFocused(true)}
+					value={value}
+					onChange={onChangeInput}
+					placeholder='Поиск'
+					startAdornment={
+						<InputAdornment position='start'>
+							<SearchIcon />
+						</InputAdornment>
+					}
+					fullWidth
+					sx={{
+						'& .MuiInputBase-input': {
+							padding: '10px 14px 10px 0',
+						},
+					}}
+				/>
+			</form>
 			{focused && value.length > 0 && (
 				<Box
 					position={'absolute'}
@@ -125,7 +132,7 @@ export const SearchBlock: FC = () => {
 							))}
 							<Box display={'flex'} justifyContent={'center'}>
 								<Button
-									onClick={onButtonClick}
+									onClick={goToSearch}
 									variant='text'
 									sx={{ lineHeight: 1.2 }}
 								>

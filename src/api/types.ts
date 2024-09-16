@@ -1,4 +1,4 @@
-import { TFilm } from '@/types'
+import { TFilm, TPerson } from '@/types'
 
 export type TFilmsResponse = {
 	docs: TFilm[]
@@ -11,12 +11,6 @@ export type TFilmsResponse = {
 export type TPossibleValuesField = {
 	name: string
 	slug: string
-}
-
-type TPerson = {
-	id: number
-	name: string
-	photo: string | null
 }
 
 export type TPersonsResponse = {

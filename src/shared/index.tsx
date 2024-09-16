@@ -1,6 +1,7 @@
 export { Error } from './error'
 export { SearchBlock } from './search-block'
-export { SearchFilmItem } from './search-film-item'
+export { SearchPersonItem } from './search-items/search-person-item'
+export { SearchFilmItem } from './search-items/search-film-item'
 export { CardRating } from './card-rating'
 export { FilmsCarousel } from './films-carousel'
 export { Facts } from './facts'

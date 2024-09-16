@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios'
-import { TFilmsResponse, TPossibleValuesField } from './types'
+import { TFilmsResponse, TPersonsResponse, TPossibleValuesField } from './types'
 import { TFilmFull } from '@/types'
 
 const axiosInstance = axios.create({
@@ -66,6 +66,17 @@ export const searchFilms = async (
 ): Promise<TFilmsResponse> => {
 	const { data } = await axiosInstance.get<TFilmsResponse>(
 		`movie/search?page=${pageCount}&limit=${limit}&query=${name}`
+	)
+	return data
+}
+
+export const searchPersons = async (
+	name: string,
+	limit: number,
+	pageCount: number = 1
+): Promise<TPersonsResponse> => {
+	const { data } = await axiosInstance.get<TPersonsResponse>(
+		`person/search?page=${pageCount}&limit=${limit}&query=${name}`
 	)
 	return data
 }

@@ -1,6 +1,6 @@
 import { Box, ListItemButton, ListItemText } from '@mui/material'
 import { FC } from 'react'
-import { CardRating } from './card-rating'
+import { CardRating } from '../card-rating'
 import cover from '@/assets/card-cover.svg'
 
 interface ISearchFilmItem {

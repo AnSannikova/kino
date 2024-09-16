@@ -101,30 +101,33 @@ export type TFilmFull = TFilm & {
 
 export type TPerson = {
 	id: number
-	name: 'string'
-	photo: 'string'
-	birthday: 'string'
-	death: 'string'
+	name: string
+	photo: string | null
+}
+
+export type TPersonFull = TPerson & {
+	birthday: string
+	death: string
 	age: number
 	birthPlace: [
 		{
-			value: 'string'
+			value: string
 		},
 	]
 	deathPlace: [
 		{
-			value: 'string'
+			value: string
 		},
 	]
 	profession: [
 		{
-			value: 'string'
+			value: string
 		},
 	]
 	countAwards: number
 	facts: [
 		{
-			value: 'string'
+			value: string
 		},
 	]
 	movies: TFilm[]
