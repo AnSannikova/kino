@@ -1,3 +1,4 @@
+export { Error } from './error'
 export { SearchBlock } from './search-block'
 export { SearchFilmItem } from './search-film-item'
 export { CardRating } from './card-rating'

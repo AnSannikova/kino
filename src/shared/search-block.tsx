@@ -16,7 +16,7 @@ import { useClickAway } from 'react-use'
 import _ from 'lodash'
 import { v4 as uuidv4 } from 'uuid'
 import { useAppDispatch } from '@/services/store'
-import { setSearchWord } from '@/services/slices/searchSlice'
+import { resetSearchState, setSearchWord } from '@/services/slices/searchSlice'
 import { Paths } from '@/utils/paths'
 
 export const SearchBlock: FC = () => {
@@ -52,13 +52,14 @@ export const SearchBlock: FC = () => {
 	const onClickItem = () => {
 		setFocused(false)
 		setFilms(null)
-		dispatch(setSearchWord(value))
 		setValue('')
 	}
 
 	const onButtonClick = () => {
 		navigate(paths.search)
+		dispatch(setSearchWord(value))
 		setValue('')
+		dispatch(resetSearchState())
 	}
 
 	return (
@@ -118,6 +119,7 @@ export const SearchBlock: FC = () => {
 												? item.genres[0].name
 												: ''
 										}
+										rating={item.rating.kp !== 0 ? item.rating.kp : undefined}
 									/>
 								</Link>
 							))}
