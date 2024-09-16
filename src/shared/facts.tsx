@@ -46,7 +46,7 @@ export const Facts: FC<IFacts> = ({ facts }) => {
 					</ListItem>
 				))}
 			</List>
-			{showedFacts.length > 6 && (
+			{facts.length > 6 && (
 				<Button onClick={handelButton} variant='text'>
 					{isOpen ? 'Скрыть' : 'Показать еще'}
 				</Button>
