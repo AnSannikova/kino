@@ -43,3 +43,15 @@ export const getFactData = (fact: string) => {
 	const reg = /<(a|\/).+?>/gm
 	return fact.replace(reg, '').replace(/&.*?;/gm, '')
 }
+
+export const getYears = () => {
+	let today = new Date().getFullYear()
+	const years: number[] = [today]
+
+	while (today > 1890) {
+		today -= 1
+		years.push(today)
+	}
+
+	return years.map((item) => String(item))
+}

@@ -8,11 +8,6 @@ export type TFilmsResponse = {
 	pages: number
 }
 
-export type TPossibleValuesField = {
-	name: string
-	slug: string
-}
-
 export type TPersonsResponse = {
 	docs: TPerson[]
 	total: number

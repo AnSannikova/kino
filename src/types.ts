@@ -138,3 +138,8 @@ export type TStill = {
 	url: string
 	previewUrl: string
 }
+
+export type TPossibleValuesField = {
+	name: string
+	slug: string
+}

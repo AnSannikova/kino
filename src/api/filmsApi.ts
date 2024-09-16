@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios'
-import { TFilmsResponse, TPersonsResponse, TPossibleValuesField } from './types'
-import { TFilmFull, TStill } from '@/types'
+import { TFilmsResponse, TPersonsResponse } from './types'
+import { TFilmFull, TPossibleValuesField, TStill } from '@/types'
 
 const axiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -92,14 +91,19 @@ export const fetchStills = async (
 	return data
 }
 
-const fetchPossibleValuesField = async (
-	filed: string
-): Promise<TPossibleValuesField[]> => {
-	const { data } = await axiosAltInstance.get<TPossibleValuesField[]>(
-		`?field=${filed}`
-	)
+export const fetchPossibleGenres = async (): Promise<
+	TPossibleValuesField[]
+> => {
+	const { data } =
+		await axiosAltInstance.get<TPossibleValuesField[]>(`?field=genres.name`)
 	return data
 }
 
-// export const fetchPossibleGenres = fetchPossibleValuesField('genres.name')
-// export const fetchPossibleCountries = fetchPossibleValuesField('countries.name')
+export const fetchPossibleCountries = async (): Promise<
+	TPossibleValuesField[]
+> => {
+	const { data } = await axiosAltInstance.get<TPossibleValuesField[]>(
+		`?field=countries.name`
+	)
+	return data
+}

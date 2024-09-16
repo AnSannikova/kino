@@ -1,3 +1,4 @@
+export { Filters } from './filters'
 export { WatchingServices } from './watching-services'
 export { ServiceCard } from './cards/service-card'
 export { Error } from './error'
