@@ -1,7 +1,7 @@
 import { Box, Card, CardActionArea, CardMedia, Typography } from '@mui/material'
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { CardRating } from './card-rating'
+import { CardRating } from '../card-rating'
 import { Paths } from '@/utils/paths'
 
 interface IFilmCard {

@@ -2,7 +2,7 @@ import { TFilm } from '@/types'
 import { getCardsData } from '@/utils/utils'
 import { Box, List, ListItem, Pagination, Skeleton } from '@mui/material'
 import { FC, memo } from 'react'
-import { FilmCard } from './film-card'
+import { FilmCard } from './cards/film-card'
 import { CardSkeleton } from './skeletons'
 
 interface IFilmsBlock {

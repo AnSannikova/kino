@@ -5,6 +5,7 @@ import {
 	FilmsCarousel,
 	Hero,
 	PersonCarousel,
+	WatchingServices,
 } from '@/shared'
 import { TFilmFull } from '@/types'
 import { filterPersonsData, findActors } from '@/utils/utils'
@@ -63,7 +64,12 @@ export const FilmPage: FC = () => {
 					}}
 				>
 					<Description text={film.description} />
+
 					{film.persons && <PersonCarousel items={film.persons} />}
+
+					{film.watchability.items && film.watchability.items.length > 0 && (
+						<WatchingServices items={film.watchability.items} />
+					)}
 
 					{film.sequelsAndPrequels && film.sequelsAndPrequels.length > 0 && (
 						<FilmsCarousel

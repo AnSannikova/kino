@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { SectionTitle } from './section-title'
 import { Box } from '@mui/material'
 import { Carousel } from './carousel/carousel'
-import { FilmCard } from './film-card'
+import { FilmCard } from './cards/film-card'
 
 interface IFilmsCarousel {
 	title: string

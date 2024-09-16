@@ -1,7 +1,7 @@
 import { TFilmPerson } from '@/types'
 import { FC } from 'react'
 import { Carousel } from './carousel/carousel'
-import { PersonCard } from './person-card'
+import { PersonCard } from './cards/person-card'
 import { SectionTitle } from './section-title'
 import { Box } from '@mui/material'
 
