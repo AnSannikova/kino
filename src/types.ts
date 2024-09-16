@@ -132,3 +132,9 @@ export type TPersonFull = TPerson & {
 	]
 	movies: TFilm[]
 }
+
+export type TStill = {
+	id: string
+	url: string
+	previewUrl: string
+}

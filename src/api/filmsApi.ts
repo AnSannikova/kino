@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios'
 import { TFilmsResponse, TPersonsResponse, TPossibleValuesField } from './types'
-import { TFilmFull } from '@/types'
+import { TFilmFull, TStill } from '@/types'
 
 const axiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -77,6 +77,17 @@ export const searchPersons = async (
 ): Promise<TPersonsResponse> => {
 	const { data } = await axiosInstance.get<TPersonsResponse>(
 		`person/search?page=${pageCount}&limit=${limit}&query=${name}`
+	)
+	return data
+}
+
+export const fetchStills = async (
+	id: string,
+	limit: number,
+	pageCount: number = 1
+): Promise<TStill[]> => {
+	const { data } = await axiosInstance.get<TStill[]>(
+		`image?page=${pageCount}&limit=${limit}&notNullFields=previewUrl&movieId=${id}&type=still`
 	)
 	return data
 }

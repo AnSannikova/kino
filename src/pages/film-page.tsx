@@ -1,4 +1,5 @@
-import { fetchFilm } from '@/api/filmsApi'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { fetchFilm, fetchStills } from '@/api/filmsApi'
 import {
 	Description,
 	Facts,
@@ -7,7 +8,7 @@ import {
 	PersonCarousel,
 	WatchingServices,
 } from '@/shared'
-import { TFilmFull } from '@/types'
+import { TFilmFull, TStill } from '@/types'
 import { filterPersonsData, findActors } from '@/utils/utils'
 import { Container } from '@mui/material'
 import { FC, useEffect, useState } from 'react'
@@ -34,18 +35,27 @@ const getHeroData = (film: TFilmFull) => {
 export const FilmPage: FC = () => {
 	const { id } = useParams()
 	const [film, setFilm] = useState<TFilmFull | null>(null)
+	const [stills, setStills] = useState<TStill[] | null>(null)
 	const noSpoilerFacts = film?.facts?.filter((item) => item.spoiler === false)
+
+	const getFilm = async () => {
+		const data = await fetchFilm(id!)
+		setFilm(data)
+	}
+
+	const getStills = async () => {
+		const data = await fetchStills(id!, 15)
+		setStills(data)
+	}
 
 	useEffect(() => {
 		try {
-			const getFilm = async () => {
-				const data = await fetchFilm(id!)
-				setFilm(data)
-			}
 			getFilm()
+			// getStills()
 		} catch (error) {
 			console.log(error)
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [id])
 
 	return (
