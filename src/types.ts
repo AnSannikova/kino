@@ -9,7 +9,7 @@ export type TName = {
 	name: string
 }
 
-export type TPerson = {
+export type TFilmPerson = {
 	id: number
 	photo: string
 	name: string | null
@@ -83,7 +83,7 @@ export type TFilmFull = TFilm & {
 	backdrop: {
 		url: string
 	}
-	persons: TPerson[]
+	persons: TFilmPerson[]
 	budget: {
 		currency: string
 		value: number
@@ -97,4 +97,35 @@ export type TFilmFull = TFilm & {
 		trailers: TTrailers[]
 	}
 	facts?: TFact[]
+}
+
+export type TPerson = {
+	id: number
+	name: 'string'
+	photo: 'string'
+	birthday: 'string'
+	death: 'string'
+	age: number
+	birthPlace: [
+		{
+			value: 'string'
+		},
+	]
+	deathPlace: [
+		{
+			value: 'string'
+		},
+	]
+	profession: [
+		{
+			value: 'string'
+		},
+	]
+	countAwards: number
+	facts: [
+		{
+			value: 'string'
+		},
+	]
+	movies: TFilm[]
 }

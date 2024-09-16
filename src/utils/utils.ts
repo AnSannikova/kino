@@ -1,4 +1,4 @@
-import { TFilm, TPartFilm, TPerson, TTrailers } from '../types'
+import { TFilm, TPartFilm, TFilmPerson, TTrailers } from '../types'
 import cover from '@/assets/card-cover.svg'
 
 export const timeConverter = (number: number) => {
@@ -7,13 +7,13 @@ export const timeConverter = (number: number) => {
 	return `${hours} ч. ${minutes} мин.`
 }
 
-export const filterPersonsData = (persons: TPerson[], filter: string) => {
+export const filterPersonsData = (persons: TFilmPerson[], filter: string) => {
 	return persons
 		.filter((person) => person.profession === filter)
 		.map((person) => person.name ?? '')
 }
 
-export const findActors = (persons: TPerson[]) => {
+export const findActors = (persons: TFilmPerson[]) => {
 	return filterPersonsData(persons, 'актеры').slice(0, 6)
 }
 

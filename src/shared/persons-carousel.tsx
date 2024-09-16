@@ -1,4 +1,4 @@
-import { TPerson } from '@/types'
+import { TFilmPerson } from '@/types'
 import { FC } from 'react'
 import { Carousel } from './carousel/carousel'
 import { PersonCard } from './person-card'
@@ -6,7 +6,7 @@ import { SectionTitle } from './section-title'
 import { Box } from '@mui/material'
 
 interface IPersonCarousel {
-	items: TPerson[]
+	items: TFilmPerson[]
 }
 
 export const PersonCarousel: FC<IPersonCarousel> = ({ items }) => (
