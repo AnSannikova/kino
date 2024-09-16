@@ -7,7 +7,7 @@ import {
 } from '@/services/slices/filmsSlice'
 import { useAppDispatch, useAppSelector } from '@/services/store'
 import { FilmsBlock } from '@/shared'
-import { Box } from '@mui/material'
+import { Box, LinearProgress } from '@mui/material'
 import { FC, useEffect } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 
@@ -39,19 +39,28 @@ export const MainPage: FC = () => {
 	}, [location])
 
 	return (
-		<Box
-			maxWidth='1200px'
-			component={'section'}
-			padding={'0 6px'}
-			margin={'0 auto'}
-		>
-			<FilmsBlock
-				items={films}
-				isLoading={isLoading}
-				pagesCount={allPages}
-				currentPage={page}
-				handleChange={handleChange}
-			/>
-		</Box>
+		<>
+			{films.length === 0 && (
+				<Box width={'100%'}>
+					<LinearProgress />
+				</Box>
+			)}
+			{films.length > 0 && (
+				<Box
+					maxWidth='1200px'
+					component={'section'}
+					padding={'0 6px'}
+					margin={'0 auto'}
+				>
+					<FilmsBlock
+						items={films}
+						isLoading={isLoading}
+						pagesCount={allPages}
+						currentPage={page}
+						handleChange={handleChange}
+					/>
+				</Box>
+			)}
+		</>
 	)
 }

@@ -18,8 +18,7 @@ interface IFacts {
 
 export const Facts: FC<IFacts> = ({ facts }) => {
 	const [isOpen, setIsOpen] = useState(false)
-	const noSpoilerFacts = facts.filter((item) => item.spoiler === false)
-	const showedFacts = isOpen ? noSpoilerFacts : noSpoilerFacts.slice(0, 5)
+	const showedFacts = isOpen ? facts : facts.slice(0, 5)
 
 	const handelButton = () => {
 		setIsOpen(!isOpen)
@@ -47,9 +46,11 @@ export const Facts: FC<IFacts> = ({ facts }) => {
 					</ListItem>
 				))}
 			</List>
-			<Button onClick={handelButton} variant='text'>
-				{isOpen ? 'Скрыть' : 'Показать еще'}
-			</Button>
+			{showedFacts.length > 6 && (
+				<Button onClick={handelButton} variant='text'>
+					{isOpen ? 'Скрыть' : 'Показать еще'}
+				</Button>
+			)}
 		</Box>
 	)
 }

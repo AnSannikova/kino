@@ -7,7 +7,7 @@ import {
 	OutlinedInput,
 } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import { SearchItem } from './search-item'
+import { SearchFilmItem } from './search-film-item'
 import { ChangeEvent, FC, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { searchFilms } from '@/api/filmsApi'
@@ -53,6 +53,7 @@ export const SearchBlock: FC = () => {
 		setFocused(false)
 		setFilms(null)
 		dispatch(setSearchWord(value))
+		setValue('')
 	}
 
 	const onButtonClick = () => {
@@ -108,7 +109,7 @@ export const SearchBlock: FC = () => {
 									key={uuidv4()}
 									to={`${paths.main}${item.type}/${item.id}`}
 								>
-									<SearchItem
+									<SearchFilmItem
 										imgSrc={item.poster?.previewUrl}
 										name={item?.name || ''}
 										year={item.year || undefined}

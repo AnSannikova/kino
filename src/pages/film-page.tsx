@@ -33,6 +33,7 @@ const getHeroData = (film: TFilmFull) => {
 export const FilmPage: FC = () => {
 	const { id } = useParams()
 	const [film, setFilm] = useState<TFilmFull | null>(null)
+	const noSpoilerFacts = film?.facts?.filter((item) => item.spoiler === false)
 
 	useEffect(() => {
 		try {
@@ -75,7 +76,9 @@ export const FilmPage: FC = () => {
 						<FilmsCarousel items={film.similarMovies} title='Похожие фильмы' />
 					)}
 
-					{film.facts && film.facts.length > 0 && <Facts facts={film.facts} />}
+					{noSpoilerFacts && noSpoilerFacts?.length > 0 && (
+						<Facts facts={noSpoilerFacts} />
+					)}
 				</Container>
 			</>
 		)

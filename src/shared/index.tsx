@@ -1,5 +1,5 @@
 export { SearchBlock } from './search-block'
-export { SearchItem } from './search-item'
+export { SearchFilmItem } from './search-film-item'
 export { CardRating } from './card-rating'
 export { FilmsCarousel } from './films-carousel'
 export { Facts } from './facts'

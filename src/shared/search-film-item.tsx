@@ -11,7 +11,7 @@ interface ISearchItem {
 	genre?: string
 }
 
-export const SearchItem: FC<ISearchItem> = ({
+export const SearchFilmItem: FC<ISearchItem> = ({
 	imgSrc,
 	name,
 	rating,
