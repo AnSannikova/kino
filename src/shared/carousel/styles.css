@@ -7,11 +7,11 @@
 }
 
 .film {
-	--slide-size: 14.3%;
+	--slide-size: calc(100% / 9);
 }
 
 .person {
-	--slide-size: 10%;
+	--slide-size: calc(100% / 11);
 }
 
 .embla__viewport {

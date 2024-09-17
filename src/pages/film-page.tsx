@@ -63,8 +63,7 @@ export const FilmPage: FC = () => {
 			<>
 				<Hero {...getHeroData(film)} />
 				<Container
-					maxWidth={'lg'}
-					component={'section'}
+					maxWidth={'xl'}
 					sx={{
 						paddingTop: 5,
 						paddingBottom: 7,

@@ -57,7 +57,7 @@ export const Hero: FC<IHero> = memo((props) => (
 			}}
 		/>
 
-		<Container maxWidth='lg' sx={{ margin: '0 auto' }}>
+		<Container maxWidth='xl' sx={{ margin: '0 auto' }}>
 			<AboutFilm {...props} />
 		</Container>
 	</Box>

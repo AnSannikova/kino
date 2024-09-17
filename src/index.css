@@ -108,6 +108,10 @@ section {
 	display: block;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -116,6 +120,11 @@ body {
 	line-height: 1;
 	vertical-align: baseline;
 	border: 0;
+}
+
+html,
+body {
+	scrollbar-gutter: stable;
 }
 
 ol,
