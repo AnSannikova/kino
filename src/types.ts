@@ -1,3 +1,23 @@
+export type TFilmsOptions = {
+	limit?: string
+	selectFields?: string[]
+	sortField?: string
+	sortType?: string
+	type?: string
+	year?: string
+	'genres.name'?: string
+	'countries.name'?: string
+	'rating.kp'?: string
+}
+
+export enum FilmType {
+	'фильм' = 'movie',
+	'сериал' = 'tv-series',
+	'мультфильм' = 'cartoon',
+	'анимационный сериал' = 'animated-series',
+	'аниме' = 'anime',
+}
+
 export type TFilmType =
 	| 'movie'
 	| 'tv-series'
@@ -137,9 +157,4 @@ export type TStill = {
 	id: string
 	url: string
 	previewUrl: string
-}
-
-export type TPossibleValuesField = {
-	name: string
-	slug: string
 }

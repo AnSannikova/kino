@@ -1,11 +1,10 @@
 import { fetchPossibleCountries, fetchPossibleGenres } from '@/api/filmsApi'
-import { TPossibleValuesField } from '@/types'
 import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 type TFilterState = {
-	genres: TPossibleValuesField[]
-	countries: TPossibleValuesField[]
+	genres: string[]
+	countries: string[]
 	isLoading: boolean
 	errors: string | undefined
 }
@@ -35,12 +34,12 @@ const filterSlice = createSlice({
 			.addCase(getPossibleGenresThunk.fulfilled, (state, action) => {
 				state.errors = undefined
 				state.isLoading = false
-				state.genres = action.payload
+				state.genres = action.payload.map((item) => item.name)
 			})
 			.addCase(getPossibleCountriesThunk.fulfilled, (state, action) => {
 				state.errors = undefined
 				state.isLoading = false
-				state.countries = action.payload
+				state.countries = action.payload.map((item) => item.name)
 			})
 			.addMatcher(
 				isAnyOf(

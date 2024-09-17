@@ -1,5 +1,22 @@
-import { TFilm, TPartFilm, TFilmPerson, TTrailers } from '../types'
+import {
+	TFilm,
+	TPartFilm,
+	TFilmPerson,
+	TTrailers,
+	TFilmsOptions,
+} from '../types'
 import cover from '@/assets/card-cover.svg'
+
+export const endpoint = (fields: TFilmsOptions) => {
+	return Object.entries(fields)
+		.map((item) => {
+			const [option, fields] = item
+			return Array.isArray(fields)
+				? fields.map((field) => `&${option}=${field}`).join('')
+				: `&${option}=${fields}`
+		})
+		.join('')
+}
 
 export const timeConverter = (number: number) => {
 	const hours = Math.floor(number / 60)

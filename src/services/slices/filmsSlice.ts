@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { TFilm } from '@/types'
+import { TFilm, TFilmsOptions } from '@/types'
 import { fetchFilms } from '@/api/filmsApi'
 import { RootState } from '../store'
 
@@ -21,7 +21,13 @@ const initialState: TFilmsState = {
 
 export const getFilmsThunk = createAsyncThunk(
 	'films/getAllFilms',
-	async (pageCount: number) => fetchFilms(pageCount)
+	async ({
+		pageCount,
+		options,
+	}: {
+		pageCount: number
+		options?: TFilmsOptions
+	}) => fetchFilms(pageCount, options)
 )
 
 const filmsSlice = createSlice({

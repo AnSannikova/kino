@@ -1,6 +1,7 @@
 import axios from 'axios'
-import { TFilmsResponse, TPersonsResponse } from './types'
-import { TFilmFull, TPossibleValuesField, TStill } from '@/types'
+import { TFilmsResponse, TPersonsResponse, TPossibleValuesField } from './types'
+import { TFilmFull, TFilmsOptions, TStill } from '@/types'
+import { endpoint } from '@/utils/utils'
 
 const axiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -16,8 +17,8 @@ const axiosAltInstance = axios.create({
 	},
 })
 
-const initialFilmsOptions = {
-	limit: ['30'],
+const initialFilmsOptions: TFilmsOptions = {
+	limit: '30',
 	selectFields: [
 		'id',
 		'name',
@@ -28,27 +29,16 @@ const initialFilmsOptions = {
 		'countries',
 		'genres',
 	],
-	notNullFields: ['rating.kp', 'year', 'name'],
-	sortField: ['votes.kp'],
-	sortType: ['-1'],
-}
-
-type TFilmsOptions = Partial<typeof initialFilmsOptions>
-
-const endpoint = (fields: TFilmsOptions) => {
-	return Object.entries(fields)
-		.map((item) => {
-			const [option, fields] = item
-			return fields.map((field) => `&${option}=${field}`).join('')
-		})
-		.join('')
+	sortField: 'votes.kp',
+	sortType: '-1',
 }
 
 export const fetchFilms = async (
-	pageCount: number
+	pageCount: number,
+	options?: TFilmsOptions
 ): Promise<TFilmsResponse> => {
 	const { data } = await axiosInstance.get<TFilmsResponse>(
-		`movie?page=${pageCount}${endpoint(initialFilmsOptions)}`
+		`movie?page=${pageCount}${endpoint({ ...initialFilmsOptions, ...options })}`
 	)
 	return data
 }

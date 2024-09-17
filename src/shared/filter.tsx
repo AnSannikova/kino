@@ -3,31 +3,41 @@ import {
 	genresSelector,
 } from '@/services/slices/filterSlice'
 import { useAppSelector } from '@/services/store'
+import { FilmType } from '@/types'
 import { getYears } from '@/utils/utils'
 import { Autocomplete, Box, Button, TextField, Typography } from '@mui/material'
-import { FC } from 'react'
+import { FC, FormEvent, SyntheticEvent, useState } from 'react'
+
+interface IFilterForm {
+	yearsStart?: string
+	yearsEnd?: string
+	country?: string
+	genre?: string
+	type?: string
+}
 
 export const Filter: FC = () => {
 	const years = getYears()
 	const countries = useAppSelector(countriesSelector)
 	const genres = useAppSelector(genresSelector)
-	const types = [
-		'фильм',
-		'сериал',
-		'мультфильм',
-		'анимационный сериал',
-		'аниме',
-	]
+	const types = Object.keys(FilmType)
+	const [formSate, setFormState] = useState<IFilterForm>({})
+
+	const onSubmit = (e: FormEvent) => {
+		e.preventDefault()
+		console.log(formSate)
+	}
 
 	return (
 		<Box
+			onSubmit={onSubmit}
 			component={'form'}
 			sx={{
 				position: 'sticky',
-				top: '15px',
+				top: 0,
 				height: 'fit-content',
 				width: '100%',
-				maxWidth: '300px',
+				maxWidth: '280px',
 				flexShrink: 0,
 				display: 'flex',
 				flexDirection: 'column',
@@ -36,58 +46,93 @@ export const Filter: FC = () => {
 			}}
 		>
 			<Autocomplete
-				id='types'
+				onInputChange={(_e: SyntheticEvent, value: string, reason: string) =>
+					reason === 'selectOption'
+						? setFormState({ ...formSate, type: value })
+						: delete formSate.type
+				}
+				id='type'
 				size='small'
 				options={types}
 				getOptionLabel={(option) => option}
 				renderInput={(params) => <TextField {...params} label='Формат' />}
 			/>
 			<Autocomplete
+				onInputChange={(_e: SyntheticEvent, value: string, reason: string) =>
+					reason === 'selectOption'
+						? setFormState({ ...formSate, genre: value })
+						: delete formSate.genre
+				}
 				size='small'
-				id='genres'
-				limitTags={2}
+				id='genre'
 				options={genres}
-				getOptionLabel={(option) => option.name}
+				getOptionLabel={(option) => option}
 				renderInput={(params) => <TextField {...params} label='Жанр' />}
 			/>
 			<Autocomplete
+				onInputChange={(_e: SyntheticEvent, value: string, reason: string) =>
+					reason === 'selectOption'
+						? setFormState({ ...formSate, country: value })
+						: delete formSate.country
+				}
 				size='small'
-				id='countries'
+				id='country'
 				limitTags={1}
 				options={countries}
-				getOptionLabel={(option) => option.name}
+				getOptionLabel={(option) => option}
 				renderInput={(params) => (
 					<TextField {...params} label='Страна производства' />
 				)}
 			/>
 
 			<Box>
-				<Typography>Период:</Typography>
+				<Typography sx={{ marginBottom: 1 }}>Период:</Typography>
 				<Box
 					display={'flex'}
 					width={'100%'}
-					gap={2}
+					gap={1}
 					sx={{ '& .MuiAutocomplete-root': { width: '100%' } }}
 				>
 					<Autocomplete
+						onInputChange={(
+							_e: SyntheticEvent,
+							value: string,
+							reason: string
+						) =>
+							reason === 'selectOption'
+								? setFormState({ ...formSate, yearsStart: value })
+								: delete formSate.yearsStart
+						}
 						size='small'
-						id='countries'
+						id='yearsStart'
 						options={years}
-						defaultValue={'2010'}
 						getOptionLabel={(option) => option}
 						renderInput={(params) => <TextField {...params} label='C' />}
 					/>
 					<Autocomplete
+						onInputChange={(
+							_e: SyntheticEvent,
+							value: string,
+							reason: string
+						) =>
+							reason === 'selectOption'
+								? setFormState({ ...formSate, yearsEnd: value })
+								: delete formSate.yearsEnd
+						}
 						size='small'
-						id='countries'
-						defaultValue={years[0]}
+						id='yearsEnd'
 						options={years}
 						getOptionLabel={(option) => option}
 						renderInput={(params) => <TextField {...params} label='По' />}
 					/>
 				</Box>
 			</Box>
-			<Button variant='contained' sx={{ minWidth: '250px' }}>
+			<Button
+				disabled={Object.keys(formSate).length === 0}
+				type='submit'
+				variant='contained'
+				sx={{ minWidth: '250px' }}
+			>
 				Искать
 			</Button>
 		</Box>

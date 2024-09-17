@@ -35,7 +35,7 @@ export const MainPage: FC = () => {
 	}, [])
 
 	useEffect(() => {
-		dispatch(getFilmsThunk(page))
+		dispatch(getFilmsThunk({ pageCount: page }))
 	}, [location])
 
 	return (

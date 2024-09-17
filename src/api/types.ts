@@ -15,3 +15,8 @@ export type TPersonsResponse = {
 	page: number
 	pages: number
 }
+
+export type TPossibleValuesField = {
+	name: string
+	slug: string
+}
