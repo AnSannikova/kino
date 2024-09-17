@@ -1,11 +1,13 @@
-import { filmsReducer } from './slices/filmsSlice'
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch, useSelector, useStore } from 'react-redux'
+import { filmsReducer } from './slices/filmsSlice'
 import { searchReducer } from './slices/searchSlice'
+import { filterReducer } from './slices/filterSlice'
 
 const rootReducer = {
 	films: filmsReducer,
 	search: searchReducer,
+	filter: filterReducer,
 }
 
 const store = configureStore({
