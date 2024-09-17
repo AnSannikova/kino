@@ -18,7 +18,7 @@ export const FilmsBlock: FC<IFilmsBlock> = memo(
 		const cardItems = getCardsData(items)
 
 		return (
-			<Box padding={'16px 0'}>
+			<Box padding={'16px 0'} width={'100%'}>
 				<List
 					sx={{
 						width: '100%',

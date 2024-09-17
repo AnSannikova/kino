@@ -5,6 +5,12 @@ import {
 } from 'react-router-dom'
 import { RootLayout } from '@/layouts'
 import { Paths } from './utils/paths'
+import { useAppDispatch } from './services/store'
+import { useEffect } from 'react'
+import {
+	getPossibleCountriesThunk,
+	getPossibleGenresThunk,
+} from './services/slices/filterSlice'
 
 const mainPath = Paths.main
 
@@ -52,5 +58,13 @@ const router = createBrowserRouter([
 ])
 
 export const App = () => {
+	const dispatch = useAppDispatch()
+
+	useEffect(() => {
+		dispatch(getPossibleGenresThunk())
+		dispatch(getPossibleCountriesThunk())
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
 	return <RouterProvider router={router} />
 }

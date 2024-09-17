@@ -10,7 +10,7 @@ const mainPath = Paths.main
 export const Header: FC = () => (
 	<Box component={'header'} paddingBlock={'12px'} bgcolor={'#222034'}>
 		<Container
-			maxWidth='lg'
+			maxWidth='xl'
 			sx={{
 				display: 'flex',
 				alignItems: 'center',

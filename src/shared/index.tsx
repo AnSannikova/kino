@@ -1,4 +1,4 @@
-export { Filters } from './filters'
+export { Filter } from './filter'
 export { WatchingServices } from './watching-services'
 export { ServiceCard } from './cards/service-card'
 export { Error } from './error'

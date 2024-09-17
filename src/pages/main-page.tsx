@@ -6,7 +6,7 @@ import {
 	getFilmsThunk,
 } from '@/services/slices/filmsSlice'
 import { useAppDispatch, useAppSelector } from '@/services/store'
-import { FilmsBlock } from '@/shared'
+import { FilmsBlock, Filter } from '@/shared'
 import { Box, LinearProgress } from '@mui/material'
 import { FC, useEffect } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
@@ -47,11 +47,14 @@ export const MainPage: FC = () => {
 			)}
 			{films.length > 0 && (
 				<Box
-					maxWidth='1200px'
 					component={'section'}
+					position={'relative'}
+					maxWidth='1524px'
 					padding={'0 6px'}
 					margin={'0 auto'}
+					display={'flex'}
 				>
+					<Filter />
 					<FilmsBlock
 						items={films}
 						isLoading={isLoading}

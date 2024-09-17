@@ -17,7 +17,7 @@ const axiosAltInstance = axios.create({
 })
 
 const initialFilmsOptions = {
-	limit: ['24'],
+	limit: ['30'],
 	selectFields: [
 		'id',
 		'name',
@@ -94,8 +94,9 @@ export const fetchStills = async (
 export const fetchPossibleGenres = async (): Promise<
 	TPossibleValuesField[]
 > => {
-	const { data } =
-		await axiosAltInstance.get<TPossibleValuesField[]>(`?field=genres.name`)
+	const { data } = await axiosAltInstance.get<TPossibleValuesField[]>(
+		'/movie/possible-values-by-field?field=genres.name'
+	)
 	return data
 }
 
@@ -103,7 +104,7 @@ export const fetchPossibleCountries = async (): Promise<
 	TPossibleValuesField[]
 > => {
 	const { data } = await axiosAltInstance.get<TPossibleValuesField[]>(
-		`?field=countries.name`
+		'/movie/possible-values-by-field?field=countries.name'
 	)
 	return data
 }
