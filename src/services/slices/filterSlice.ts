@@ -1,10 +1,17 @@
 import { fetchPossibleCountries, fetchPossibleGenres } from '@/api/filmsApi'
-import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit'
+import {
+	createAsyncThunk,
+	createSlice,
+	isAnyOf,
+	PayloadAction,
+} from '@reduxjs/toolkit'
 import { RootState } from '../store'
+import { TFilmsOptions } from '@/types'
 
 type TFilterState = {
 	genres: string[]
 	countries: string[]
+	options: TFilmsOptions
 	isLoading: boolean
 	errors: string | undefined
 }
@@ -12,6 +19,7 @@ type TFilterState = {
 const initialState: TFilterState = {
 	genres: [],
 	countries: [],
+	options: {},
 	isLoading: false,
 	errors: undefined,
 }
@@ -28,7 +36,11 @@ export const getPossibleCountriesThunk = createAsyncThunk(
 const filterSlice = createSlice({
 	name: 'filter',
 	initialState,
-	reducers: {},
+	reducers: {
+		addOptions: (state, action: PayloadAction<TFilmsOptions>) => {
+			state.options = { ...state.options, ...action.payload }
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(getPossibleGenresThunk.fulfilled, (state, action) => {
@@ -65,8 +77,10 @@ const filterSlice = createSlice({
 })
 
 export const filterReducer = filterSlice.reducer
+export const { addOptions } = filterSlice.actions
 export const genresSelector = (state: RootState) => state.filter.genres
 export const countriesSelector = (state: RootState) => state.filter.countries
 export const filterErrorsSelector = (state: RootState) => state.filter.errors
 export const filterIsLoadingSelector = (state: RootState) =>
 	state.filter.isLoading
+export const optionsSelector = (state: RootState) => state.filter.options

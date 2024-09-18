@@ -1,31 +1,51 @@
 import {
+	addOptions,
 	countriesSelector,
 	genresSelector,
 } from '@/services/slices/filterSlice'
-import { useAppSelector } from '@/services/store'
+import { useAppDispatch, useAppSelector } from '@/services/store'
 import { FilmType } from '@/types'
 import { getYears } from '@/utils/utils'
 import { Autocomplete, Box, Button, TextField, Typography } from '@mui/material'
 import { FC, FormEvent, SyntheticEvent, useState } from 'react'
 
 interface IFilterForm {
+	type?: string
+	'genres.name'?: string
+	'countries.name'?: string
 	yearsStart?: string
 	yearsEnd?: string
-	country?: string
-	genre?: string
-	type?: string
 }
 
 export const Filter: FC = () => {
-	const years = getYears()
-	const countries = useAppSelector(countriesSelector)
-	const genres = useAppSelector(genresSelector)
 	const types = Object.keys(FilmType)
+	const genres = useAppSelector(genresSelector)
+	const countries = useAppSelector(countriesSelector)
+	const years = getYears()
 	const [formSate, setFormState] = useState<IFilterForm>({})
+	const dispatch = useAppDispatch()
 
 	const onSubmit = (e: FormEvent) => {
 		e.preventDefault()
-		console.log(formSate)
+		for (const key in formSate) {
+			if (key === 'yearsStart') {
+				dispatch(
+					addOptions({
+						year: formSate.yearsEnd
+							? `${formSate.yearsStart}-${formSate.yearsEnd}`
+							: formSate.yearsStart,
+					})
+				)
+			} else if (key === 'yearsEnd') {
+				continue
+			} else {
+				dispatch(
+					addOptions({
+						[key]: formSate[key as keyof IFilterForm],
+					})
+				)
+			}
+		}
 	}
 
 	return (
@@ -60,8 +80,8 @@ export const Filter: FC = () => {
 			<Autocomplete
 				onInputChange={(_e: SyntheticEvent, value: string, reason: string) =>
 					reason === 'selectOption'
-						? setFormState({ ...formSate, genre: value })
-						: delete formSate.genre
+						? setFormState({ ...formSate, 'genres.name': value })
+						: delete formSate['genres.name']
 				}
 				size='small'
 				id='genre'
@@ -72,8 +92,8 @@ export const Filter: FC = () => {
 			<Autocomplete
 				onInputChange={(_e: SyntheticEvent, value: string, reason: string) =>
 					reason === 'selectOption'
-						? setFormState({ ...formSate, country: value })
-						: delete formSate.country
+						? setFormState({ ...formSate, 'countries.name': value })
+						: delete formSate['countries.name']
 				}
 				size='small'
 				id='country'
@@ -98,11 +118,14 @@ export const Filter: FC = () => {
 							_e: SyntheticEvent,
 							value: string,
 							reason: string
-						) =>
-							reason === 'selectOption'
-								? setFormState({ ...formSate, yearsStart: value })
-								: delete formSate.yearsStart
-						}
+						) => {
+							if (reason === 'selectOption') {
+								setFormState({ ...formSate, yearsStart: value })
+							} else {
+								delete formSate.yearsStart
+								delete formSate.yearsEnd
+							}
+						}}
 						size='small'
 						id='yearsStart'
 						options={years}
@@ -110,6 +133,7 @@ export const Filter: FC = () => {
 						renderInput={(params) => <TextField {...params} label='C' />}
 					/>
 					<Autocomplete
+						disabled={!formSate.yearsStart}
 						onInputChange={(
 							_e: SyntheticEvent,
 							value: string,
