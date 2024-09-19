@@ -1,3 +1,4 @@
+import { NavigateOptions, URLSearchParamsInit } from 'react-router-dom'
 import {
 	TFilm,
 	TPartFilm,
@@ -12,8 +13,12 @@ export const endpoint = (fields: TFilmsOptions) => {
 		.map((item) => {
 			const [option, fields] = item
 			return Array.isArray(fields)
-				? fields.map((field) => `&${option}=${field}`).join('')
-				: `&${option}=${fields}`
+				? fields
+						.map((field) => (field !== undefined ? `&${option}=${field}` : ''))
+						.join('')
+				: fields !== undefined
+					? `&${option}=${fields}`
+					: ''
 		})
 		.join('')
 }
@@ -71,4 +76,20 @@ export const getYears = () => {
 	}
 
 	return years.map((item) => String(item))
+}
+
+export const resetSearchParams = (
+	searchParams: URLSearchParams,
+	setSearchParams: (
+		nextInit?:
+			| URLSearchParamsInit
+			| ((prev: URLSearchParams) => URLSearchParamsInit),
+		navigateOpts?: NavigateOptions
+	) => void
+) => {
+	searchParams.delete('type')
+	searchParams.delete('genres.name')
+	searchParams.delete('countries.name')
+	searchParams.delete('years')
+	setSearchParams(searchParams)
 }

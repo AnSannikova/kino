@@ -10,14 +10,6 @@ export type TFilmsOptions = {
 	'rating.kp'?: string
 }
 
-export enum FilmType {
-	'фильм' = 'movie',
-	'сериал' = 'tv-series',
-	'мультфильм' = 'cartoon',
-	'анимационный сериал' = 'animated-series',
-	'аниме' = 'anime',
-}
-
 export type TFilmType =
 	| 'movie'
 	| 'tv-series'

@@ -17,8 +17,12 @@ export const MainPage: FC = () => {
 	const isLoading = useAppSelector(filmsIsLoadingSelector)
 	const dispatch = useAppDispatch()
 	const [searchParams, setSearchParams] = useSearchParams()
-	const page = Number(searchParams.get('page') || 1)
+	const page = Number(searchParams.get('page')) || 1
 	const location = useLocation()
+	const type = searchParams.get('type')
+	const genre = searchParams.get('genres.name')
+	const country = searchParams.get('countries.name')
+	const year = searchParams.get('year')
 
 	const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
 		setSearchParams((params) => {
@@ -35,7 +39,17 @@ export const MainPage: FC = () => {
 	}, [])
 
 	useEffect(() => {
-		dispatch(getFilmsThunk({ pageCount: page }))
+		dispatch(
+			getFilmsThunk({
+				pageCount: page,
+				options: {
+					type: type || undefined,
+					'genres.name': genre || undefined,
+					'countries.name': country || undefined,
+					year: year || undefined,
+				},
+			})
+		)
 	}, [location])
 
 	return (

@@ -1,10 +1,5 @@
 import { fetchPossibleCountries, fetchPossibleGenres } from '@/api/filmsApi'
-import {
-	createAsyncThunk,
-	createSlice,
-	isAnyOf,
-	PayloadAction,
-} from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 import { TFilmsOptions } from '@/types'
 
@@ -36,11 +31,7 @@ export const getPossibleCountriesThunk = createAsyncThunk(
 const filterSlice = createSlice({
 	name: 'filter',
 	initialState,
-	reducers: {
-		addOptions: (state, action: PayloadAction<TFilmsOptions>) => {
-			state.options = { ...state.options, ...action.payload }
-		},
-	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder
 			.addCase(getPossibleGenresThunk.fulfilled, (state, action) => {
@@ -77,7 +68,6 @@ const filterSlice = createSlice({
 })
 
 export const filterReducer = filterSlice.reducer
-export const { addOptions } = filterSlice.actions
 export const genresSelector = (state: RootState) => state.filter.genres
 export const countriesSelector = (state: RootState) => state.filter.countries
 export const filterErrorsSelector = (state: RootState) => state.filter.errors
