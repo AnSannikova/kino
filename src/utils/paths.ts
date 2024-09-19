@@ -1,4 +1,4 @@
 export enum Paths {
-	main = '/',
-	search = '/search',
+	main = '/kino/',
+	search = '/kino/search',
 }
