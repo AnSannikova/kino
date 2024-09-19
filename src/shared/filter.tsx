@@ -95,6 +95,7 @@ export const Filter: FC = () => {
 
 	const onResetButtonClick = () => {
 		resetSearchParams(searchParams, setSearchParams)
+		resetPageCount()
 		setFormState({
 			type: '',
 			'genres.name': '',
